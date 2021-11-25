@@ -7,20 +7,19 @@
 1.  Real Time Queries On List of Employees
 2.  How many Male and female employees are there in the organization?
 3.	Print the name of all departments in the organization?
-
-#### What is the average age of male and female employees
-#### Get the details of Highest paid employee in the Organization
-#### Get the name of all employees who have joined after 2015?
-#### Count the number of employees in each department ?
-#### What is the average salary of each department
-#### Get the details of youngest male employee in the product development department
-#### who has the most working experience in the organizarion
-#### how many male and female employees are there in the sales and marketing team
-#### what is the average salary of male and female employees
-#### List down the names of all employees in each department 
-#### what is the average salay and total salary of the whole organization
-#### Separate the employees who are younger or equal to 25 years from thos employees who are older than 25 years
-#### who is the oldest employee in the organization? what is his age and department he belongs to
+4.	What is the average age of male and female employees
+5.	Get the details of Highest paid employee in the Organization
+6.	Get the name of all employees who have joined after 2015?
+7.	Count the number of employees in each department ?
+8.	What is the average salary of each department
+9.	Get the details of youngest male employee in the product development department
+10.	who has the most working experience in the organizarion
+11.	how many male and female employees are there in the sales and marketing team
+12.	what is the average salary of male and female employees
+13.	List down the names of all employees in each department 
+14.	what is the average salay and total salary of the whole organization
+15.	Separate the employees who are younger or equal to 25 years from thos employees who are older than 25 years
+16.	who is the oldest employee in the organization? what is his age and department he belongs to
 
 # Steps
 ## 1. Create a new spring boot project 
