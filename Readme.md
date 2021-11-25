@@ -24,6 +24,7 @@
 # Steps
 1.	Create a new spring boot project 
 2.	Add Dependencies \n
+  
 \t \t i.	Starter Web // As we are making a Rest Api \n
 \t \t ii. Remaining all the default dependencies (which are by default added in the projects pom.xml)
 3.	Application.properties
