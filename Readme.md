@@ -3,9 +3,11 @@
 # Requirement 
 ## Create a Array List that on startup of Application get loaded with database.
 ## Problem to be solved using Array List
-### Real Time Queries On List of Employees
-#### How many Male and female employees are there in the organization?
-#### Print the name of all departments in the organization?
+
+1.  Real Time Queries On List of Employees
+2.  How many Male and female employees are there in the organization?
+3.	Print the name of all departments in the organization?
+
 #### What is the average age of male and female employees
 #### Get the details of Highest paid employee in the Organization
 #### Get the name of all employees who have joined after 2015?
@@ -104,7 +106,9 @@ public class EmpSerivce {
 	private EmpRepository empRepo;
 ```
 
-# VIEW ALL EMPLOYEES LIST [(http://127.0.0.1:8080/all "View All Emplyees List")] 
+------------------------------------------------------------
+
+# **VIEW ALL EMPLOYEES LIST** <http://127.0.0.1:8080/all>
 ### in Employee Controller Class
 ``` 
 @RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -136,6 +140,9 @@ public List<Employee> getAllEmp() {
 		return employee;
 	}	
 ```
+
+------------------------------------------------------------
+
 
 
 
