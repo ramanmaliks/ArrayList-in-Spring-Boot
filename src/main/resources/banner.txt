@@ -1,0 +1,9 @@
+
+${Ansi.GREEN}   ___    ___    __  ___   ___    _  __
+${Ansi.GREEN}  / _ \  / _ |  /  |/  /  / _ |  / |/ /
+${Ansi.GREEN} / , _/ / __ | / /|_/ /  / __ | /    / 
+${Ansi.GREEN}/_/|_| /_/ |_|/_/  /_/  /_/ |_|/_/|_/  
+
+${Ansi.RED} :: Spring Boot ${spring.application.name} ${Ansi.DEFAULT}      
+${Ansi.RED} :: Spring Boot ${spring-boot.version} ${Ansi.DEFAULT}   
+${Ansi.RED} :: Spring Boot ${spring-boot.formatted-version} ${Ansi.DEFAULT}
