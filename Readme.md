@@ -3,8 +3,8 @@
 # Requirement 
 ## Create a Array List that on startup of Application get loaded with database.
 ## Problem to be solved using Array List
-
-1.  Real Time Queries On List of Employees
+# Real Time Queries On List of Employees
+1.  CRUD Operations CREATE , READ, UPDATE, DELETE ON EMPLOYEES IN ARRAY LIST
 2.  How many Male and female employees are there in the organization?
 3.	Print the name of all departments in the organization?
 4.	What is the average age of male and female employees
@@ -251,13 +251,248 @@ public Employee getEmpById(int id) {
 		return emp;	}
 ```
 ------------------------------------------------------------
-# Add New Employee in the Employees Array List
+# How many Male and female employees are there in the organization?
 ### in Employee Controller Class
+```
+	@RequestMapping(value = "/emp/genders", method = RequestMethod.GET)
+	public Map<String, Long> getGenderWise() {
+		return empSer.getGenderWise();	}
+```
 ### in Employee Service Class
+```
+	public Map<String, Long> getGenderWise() {
+		return empRepo.findAllGenderWise();	}
+```
 ### in Employee Repository
+```
+	public Map<String, Long> findAllGenderWise() {
+		Map<String, Long> empGender = employeeList.stream().collect(Collectors
+				.groupingBy(Employee::getGender, Collectors.counting()));
+		return empGender;	}
+```
 ------------------------------------------------------------
-# Add New Employee in the Employees Array List
+# Print the name of all departments in the organization?
 ### in Employee Controller Class
+```
+	@RequestMapping(value = "/emp/dept", method = RequestMethod.GET)
+	public List getAllDept() {
+		return empSer.getAllDept();
+	}
+```
 ### in Employee Service Class
+```
+	public List getAllDept() {
+		return empRepo.findAllDepartment();
+	}
+```
 ### in Employee Repository
+```
+	public List findAllDepartment() {
+		List department = employeeList.stream().map(Employee::getDepartment)
+				.distinct().toList();
+		return department;
+	}
+```
+------------------------------------------------------------
+# What is the average age of male and female employees
+### in Employee Controller Class
+```
+	@RequestMapping(value = "/emp/avg", method = RequestMethod.GET)
+	public Map<String, Double> getAvgEmp() {
+		return empSer.getAvgEmp();
+	}
+```
+### in Employee Service Class
+```
+	public Map<String, Double> getAvgEmp() {
+		return empRepo.findAvgGenderWise();
+	}
+```
+### in Employee Repository
+```
+	public Map<String, Double> findAvgGenderWise() {
+		Map<String, Double> empGender = employeeList.stream()
+				.collect(Collectors.groupingBy(Employee::getGender,
+						Collectors.averagingInt(Employee::getAge)));
+		return empGender;
+	}
+```
+------------------------------------------------------------
+# Get the details of Highest paid employee in the Organization
+### in Employee Controller Class
+```
+	@RequestMapping(value = "/emp/sal", method = RequestMethod.GET)
+	public Optional<Employee> getMaxSal() {
+		return empSer.getMaxSal();
+	}
+```
+### in Employee Service Class
+```
+	public Optional<Employee> getMaxSal() {		
+		return empRepo.findMaxSal();
+	}
+```
+### in Employee Repository
+```
+	public Optional<Employee> findMaxSal() {
+		Optional<Employee> emp = employeeList.stream().collect(Collectors
+				.maxBy(Comparator.comparingDouble(Employee::getSalary)));
+		return emp;
+	}
+```
+------------------------------------------------------------
+# Get the name of all employees who have joined after 2015?
+### in Employee Controller Class
+```
+	@RequestMapping(value = "/emp/yoj/{yoj}", method = RequestMethod.GET)
+	public List getYoj(@PathVariable("yoj") int yoj) {
+		return empSer.getYoj(yoj);
+	}
+```
+### in Employee Service Class
+```
+public List getYoj(int yoj) {
+		return empRepo.findByYoJ(yoj);
+	}
+```
+### in Employee Repository
+```
+	//Get the name of all employees who have joined after 2015?
+	public List findByYoJ(int yoj) {
+		List emp = employeeList.stream().filter(e -> e.getYearOfJoining() > yoj)
+				.map(Employee::getName).toList();
+		return emp;
+	}
+```
+------------------------------------------------------------
+# Count the number of employees in each department ?
+### in Employee Controller Class
+```
+
+```
+### in Employee Service Class
+```
+
+```
+### in Employee Repository
+```
+
+```
+------------------------------------------------------------
+# What is the average salary of each department
+### in Employee Controller Class
+```
+
+```
+### in Employee Service Class
+```
+
+```
+### in Employee Repository
+```
+
+```
+------------------------------------------------------------
+# who has the most working experience in the organizarion
+### in Employee Controller Class
+```
+
+```
+### in Employee Service Class
+```
+
+```
+### in Employee Repository
+```
+
+```
+------------------------------------------------------------
+# how many male and female employees are there in the sales and marketing team
+### in Employee Controller Class
+```
+
+```
+### in Employee Service Class
+```
+
+```
+### in Employee Repository
+```
+
+```
+------------------------------------------------------------
+# what is the average salary of male and female employees
+### in Employee Controller Class
+```
+
+```
+### in Employee Service Class
+```
+
+```
+### in Employee Repository
+```
+
+```
+------------------------------------------------------------
+# List down the names of all employees in each department 
+### in Employee Controller Class
+```
+
+```
+### in Employee Service Class
+```
+
+```
+### in Employee Repository
+```
+
+```
+------------------------------------------------------------
+# what is the average salay and total salary of the whole organization
+### in Employee Controller Class
+```
+
+```
+### in Employee Service Class
+```
+
+```
+### in Employee Repository
+```
+
+```
+------------------------------------------------------------
+# Separate the employees who are younger or equal to 25 years from thos employees who are older than 25 years
+### in Employee Controller Class
+```
+
+```
+### in Employee Service Class
+```
+
+```
+### in Employee Repository
+```
+
+```
+------------------------------------------------------------
+# who is the oldest employee in the organization? what is his age and department he belongs to
+### in Employee Controller Class
+```
+
+```
+### in Employee Service Class
+```
+
+```
+### in Employee Repository
+```
+
+```
+
+
+
+
+
 

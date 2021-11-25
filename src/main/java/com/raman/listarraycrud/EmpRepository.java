@@ -61,29 +61,32 @@ public class EmpRepository {
 				.findAny().get();
 		return emp;
 	}
-
+	// VIEW LIST GENDER WISE
 	public Map<String, Long> findAllGenderWise() {
 		Map<String, Long> empGender = employeeList.stream().collect(Collectors
 				.groupingBy(Employee::getGender, Collectors.counting()));
 		return empGender;
 	}
+	// VIEW ALL DEPARTMENT NAMES
 	public List findAllDepartment() {
 		List department = employeeList.stream().map(Employee::getDepartment)
 				.distinct().toList();
 		return department;
 	}
+	// AVERAGE OF MALE AND FEMALE EMPLOYEES
 	public Map<String, Double> findAvgGenderWise() {
 		Map<String, Double> empGender = employeeList.stream()
 				.collect(Collectors.groupingBy(Employee::getGender,
 						Collectors.averagingInt(Employee::getAge)));
 		return empGender;
 	}
-
+	// HIGHEST PAID EMPLOYEE
 	public Optional<Employee> findMaxSal() {
 		Optional<Employee> emp = employeeList.stream().collect(Collectors
 				.maxBy(Comparator.comparingDouble(Employee::getSalary)));
 		return emp;
 	}
+	//Get the name of all employees who have joined after 2015?
 	public List findByYoJ(int yoj) {
 		List emp = employeeList.stream().filter(e -> e.getYearOfJoining() > yoj)
 				.map(Employee::getName).toList();

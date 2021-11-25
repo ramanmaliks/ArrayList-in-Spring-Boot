@@ -45,24 +45,27 @@ public class Controller {
 	public Employee getEmpById(@PathVariable("id") Integer id) {
 		return empSer.getEmpById(id);
 	}
-
+	//Employee List Gender Wise
 	@RequestMapping(value = "/emp/genders", method = RequestMethod.GET)
 	public Map<String, Long> getGenderWise() {
 		return empSer.getGenderWise();
 	}
-
+	// VIEW NAMES OF DEPARTMENT
 	@RequestMapping(value = "/emp/dept", method = RequestMethod.GET)
 	public List getAllDept() {
 		return empSer.getAllDept();
 	}
+	// AVERAGE AGE OF MALE AND FEMALE
 	@RequestMapping(value = "/emp/avg", method = RequestMethod.GET)
 	public Map<String, Double> getAvgEmp() {
 		return empSer.getAvgEmp();
 	}
+	// HIGHEST PAID EMPLOYEE
 	@RequestMapping(value = "/emp/sal", method = RequestMethod.GET)
 	public Optional<Employee> getMaxSal() {
 		return empSer.getMaxSal();
 	}
+	// Get the name of all employees who have joined after 2015?
 	@RequestMapping(value = "/emp/yoj/{yoj}", method = RequestMethod.GET)
 	public List getYoj(@PathVariable("yoj") int yoj) {
 		return empSer.getYoj(yoj);

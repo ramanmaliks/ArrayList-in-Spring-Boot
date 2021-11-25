@@ -33,20 +33,24 @@ public class EmpSerivce {
 	public Employee getEmpById(int id) {
 		return empRepo.findById(id);
 	}
-
+	// GENDER WISE LIST
 	public Map<String, Long> getGenderWise() {
 		return empRepo.findAllGenderWise();
 	}
+	// VIEW DEPARTMENT NAMES
 	public List getAllDept() {
 		return empRepo.findAllDepartment();
 	}
+	// AVERAGE AGE OF MALE AND FEMALE EMPLOYEES
 	public Map<String, Double> getAvgEmp() {
 		return empRepo.findAvgGenderWise();
 	}
+	// HIGHEST PAID EMPLOYEE
 	public Optional<Employee> getMaxSal() {
 		
 		return empRepo.findMaxSal();
 	}
+	// Get the name of all employees who have joined after 2015?
 	public List getYoj(int yoj) {
 		return empRepo.findByYoJ(yoj);
 	}
