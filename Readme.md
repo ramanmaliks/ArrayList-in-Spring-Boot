@@ -23,10 +23,10 @@
 
 # Steps
 1.	Create a new spring boot project 
-2.	Add Dependencies \n
-  
-\t \t i.	Starter Web // As we are making a Rest Api \n
-\t \t ii. Remaining all the default dependencies (which are by default added in the projects pom.xml)
+2.	Add Dependencies   
+
+	i.	Starter Web // As we are making a Rest Api 
+	ii. Remaining all the default dependencies (which are by default added in the projects pom.xml)
 3.	Application.properties
 	i.	server.port=8080 // for the Tomcat server port address.
 4.	create Packages
