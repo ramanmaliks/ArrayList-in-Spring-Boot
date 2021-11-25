@@ -29,11 +29,16 @@
 	
 	ii. Remaining all the default dependencies (which are by default added in the projects pom.xml)
 3.	Application.properties
+
 	i.	server.port=8080 // for the Tomcat server port address.
-4.	create Packages
+4.	Create Packages
+
 	i	controller package
+	
 	ii	model package
+	
 	iii	repository package
+	
 	iv	service package
 
 # Create Employee Enity Class
