@@ -22,17 +22,17 @@
 16.	who is the oldest employee in the organization? what is his age and department he belongs to
 
 # Steps
-## 1. Create a new spring boot project 
-## 2. Add Dependencies
-### i.) Starter Web // As we are making a Rest Api
+1.	Create a new spring boot project 
+2.	Add Dependencies
+	i.	Starter Web // As we are making a Rest Api
 ### ii.) Remaining all the default dependencies (which are by default added in the projects pom.xml)
-## 3. application.properties
-### i.) server.port=8080 // for the Tomcat server port address.
-## 4. create Packages
-### i.) controller package
-### ii.) model package
-### iii.) repository package
-### iv.) service package
+3.	Application.properties
+	i.	server.port=8080 // for the Tomcat server port address.
+4.	create Packages
+	i	controller package
+	ii	model package
+	iii	repository package
+	iv	service package
 
 # Create Employee Enity Class
 ```
