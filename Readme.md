@@ -22,16 +22,16 @@
 16.	who is the oldest employee in the organization? what is his age and department he belongs to
 
 # Steps
-1.	Create a new spring boot project 
-2.	Add Dependencies   
+1.	**Create a new spring boot project** 
+2.	**Add Dependencies**   
 
 	i.	Starter Web // As we are making a Rest Api 
 	
 	ii. Remaining all the default dependencies (which are by default added in the projects pom.xml)
-3.	Application.properties
+3.	**Application.properties**
 
 	i.	server.port=8080 // for the Tomcat server port address.
-4.	Create Packages
+4.	**Create Packages**
 
 	i	controller package
 	
@@ -114,7 +114,7 @@ public class EmpSerivce {
 
 ------------------------------------------------------------
 
-# **VIEW ALL EMPLOYEES LIST** <http://127.0.0.1:8080/all>
+# VIEW ALL EMPLOYEES LIST <http://127.0.0.1:8080/all>
 ### in Employee Controller Class
 ``` 
 @RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -148,9 +148,116 @@ public List<Employee> getAllEmp() {
 ```
 
 ------------------------------------------------------------
+# Add New Employee in the Employee Array List
+### in Employee Controller Class
+```
+@RequestMapping(path = "/add", method = RequestMethod.POST)
+	public Employee addEmp(@RequestBody Employee employee) {
+		return empSer.addNewEmp(employee);
+	}
+```
+### in Employee Service Class
+```
+public Employee addNewEmp(Employee employee) {
+		return empRepo.save(employee);	}
+```
+
+### in Employee Repository
+```
+		public Employee save(Employee employee) {
+		key = getMaxId() == 0 ? 0 : getMaxId();
+		if (employee.getId() == 0) {
+			employee.setId(++key);	}
+		employeeList.add(employee);
+		return employee;						}
+```
+
+------------------------------------------------------------
 
 
+# Update Employee in the Employees Array List
+### in Employee Controller Class
+```
+@RequestMapping(path = "/update/{id}", method = RequestMethod.PUT)
+	public Employee updateEmp(@PathVariable("id") Integer id,
+			@RequestBody Employee employee) {
+		return empSer.updateEmp(id, employee);
+	}
+```
+### in Employee Service Class
+```
+public Employee updateEmp(Integer id, Employee employee) {
+		return empRepo.save(id, employee);
+	}
+```
+### in Employee Repository
+```
+public Employee save(Integer id, Employee employee) {
+		Employee empl = employeeList.stream().filter(e -> e.getId() == id)
+				.findAny().get();
+		if (empl.getId() != 0 || empl != null) {
+			empl.setName(employee.getName());
+			empl.setAge(employee.getAge());
+			empl.setGender(employee.getGender());
+			empl.setDepartment(employee.getDepartment());
+			empl.setYearOfJoining(employee.getYearOfJoining());
+			empl.setSalary(employee.getSalary());
+		}
+		return empl;
+	}
+```
+------------------------------------------------------------
 
 
-
+# Delete a Employee in the Employees Array List
+### in Employee Controller Class
+```
+	@RequestMapping(path = "/delete/{id}", method = RequestMethod.DELETE)
+	public void deleteEmpById(@PathVariable("id") Integer id) {
+	empSer.deleteEmpById(id);
+```
+### in Employee Service Class
+```
+public void deleteEmpById(Integer id) {
+		empRepo.deleteById(id);	}
+```
+### in Employee Repository
+```
+public void deleteById(int EmployeeId) {
+		Employee empl = employeeList.stream()
+				.filter(e -> e.getId() == EmployeeId).findAny().get();
+		employeeList.remove(empl);
+	}
+```
+------------------------------------------------------------
+# View Employee By ID in the Employees Array List
+### in Employee Controller Class
+```
+	@RequestMapping(value = "/emp/{id}", method = RequestMethod.GET)
+	public Employee getEmpById(@PathVariable("id") Integer id) {
+		return empSer.getEmpById(id);
+	}
+```
+### in Employee Service Class
+```
+public Employee getEmpById(int id) {
+		return empRepo.findById(id);	}
+```
+### in Employee Repository
+```
+	public Employee findById(int id) {
+		Employee emp = employeeList.stream().filter(e -> e.getId() == id)
+				.findAny().get();
+		return emp;	}
+```
+------------------------------------------------------------
+# Add New Employee in the Employees Array List
+### in Employee Controller Class
+### in Employee Service Class
+### in Employee Repository
+------------------------------------------------------------
+# Add New Employee in the Employees Array List
+### in Employee Controller Class
+### in Employee Service Class
+### in Employee Repository
 

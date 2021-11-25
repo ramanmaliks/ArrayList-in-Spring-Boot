@@ -49,13 +49,13 @@ public class EmpRepository {
 		}
 		return empl;
 	}
-
+	// Delete Employee by ID
 	public void deleteById(int EmployeeId) {
 		Employee empl = employeeList.stream()
 				.filter(e -> e.getId() == EmployeeId).findAny().get();
 		employeeList.remove(empl);
 	}
-
+	// View Employee by ID
 	public Employee findById(int id) {
 		Employee emp = employeeList.stream().filter(e -> e.getId() == id)
 				.findAny().get();

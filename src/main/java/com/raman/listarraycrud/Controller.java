@@ -19,28 +19,28 @@ public class Controller {
 
 	@Autowired
 	private EmpSerivce empSer;
-
+	//View Employee List
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public List<Employee> getAllEmp() {
 		return empSer.getAllEmp();
 	}
-
+	// Add Employee
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	public Employee addEmp(@RequestBody Employee employee) {
 		return empSer.addNewEmp(employee);
 	}
-
+	// Update Employee
 	@RequestMapping(path = "/update/{id}", method = RequestMethod.PUT)
 	public Employee updateEmp(@PathVariable("id") Integer id,
 			@RequestBody Employee employee) {
 		return empSer.updateEmp(id, employee);
 	}
-
+	// Delete Employee
 	@RequestMapping(path = "/delete/{id}", method = RequestMethod.DELETE)
 	public void deleteEmpById(@PathVariable("id") Integer id) {
 		empSer.deleteEmpById(id);
 	}
-
+	// View Employee By Id
 	@RequestMapping(value = "/emp/{id}", method = RequestMethod.GET)
 	public Employee getEmpById(@PathVariable("id") Integer id) {
 		return empSer.getEmpById(id);

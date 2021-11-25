@@ -21,13 +21,15 @@ public class EmpSerivce {
 		return empRepo.save(employee);
 
 	}
+	
 	public Employee updateEmp(Integer id, Employee employee) {
 		return empRepo.save(id, employee);
 	}
+	
 	public void deleteEmpById(Integer id) {
 		empRepo.deleteById(id);
-
 	}
+	// Employee By Id
 	public Employee getEmpById(int id) {
 		return empRepo.findById(id);
 	}
