@@ -93,18 +93,22 @@ public class EmpRepository {
 				.map(Employee::getName).toList();
 		return emp;
 	}
+	
+	//Count No. of Employees Department Wise
 	public Map<String, Long> findEmpDep() {
 		Map<String, Long> emp = employeeList.stream().collect(Collectors
 				.groupingBy(Employee::getDepartment, Collectors.counting()));
 		return emp;
 	}
 
+	// average salary of each department
 	public Map<String, Double> findAvgDepWiseSalary() {
 		Map<String, Double> emp = employeeList.stream()
 				.collect(Collectors.groupingBy(Employee::getDepartment,
 						Collectors.averagingDouble(Employee::getSalary)));
 		return emp;
 	}
+	// youngest male employee in the product development department
 	public Optional<Employee> findYoungestEmpOfMinAgeDep() {
 		Optional<Employee> emp = employeeList.stream()
 				.filter(e -> e.getGender() == "Male"
@@ -113,6 +117,7 @@ public class EmpRepository {
 		return emp;
 	}
 
+	//who has the most working experience in the organization
 	public Optional<Employee> FindOldestEmp() {
 		Optional<Employee> emp = employeeList.stream()
 				.sorted(Comparator.comparingInt(Employee::getYearOfJoining))
@@ -120,6 +125,7 @@ public class EmpRepository {
 		return emp;
 	}
 
+	//male and female employees are there in the sales and marketing team
 	public Map<String, Long> findEmpGenderInSalesNMarketing() {
 		Map<String, Long> emp = employeeList.stream()
 				.filter(e -> e.getDepartment() == "Sales And Marketing")
@@ -128,6 +134,7 @@ public class EmpRepository {
 		return emp;
 	}
 
+	// the average salary of male and female employees
 	public Map<String, Double> findEmpAvgSalaryGenderWise() {
 		Map<String, Double> emp = employeeList.stream()
 				.collect(Collectors.groupingBy(Employee::getGender,
@@ -135,23 +142,28 @@ public class EmpRepository {
 		return emp;
 	}
 
+	// List down the names of all employees in each department
 	public Map<String, List<Employee>> findNamesEmpDeptWise() {
 		Map<String, List<Employee>> emp = employeeList.stream()
 				.collect(Collectors.groupingBy(Employee::getDepartment));
 		return emp;
 	}
+	
+	//average salary and total salary of the whole organization
 	public DoubleSummaryStatistics findTotalSalaryAndAverageSalary() {
 		DoubleSummaryStatistics emp = employeeList.stream()
 				.collect(Collectors.summarizingDouble(Employee::getSalary));
 		return emp;
 	}
 
+	//Separate the employees who are younger or equal to 25 years from thos employees who are older than 25 years
 	public Map<Boolean, List<Employee>> findPartitionByAge() {
 		Map<Boolean, List<Employee>> emp = employeeList.stream()
 				.collect(Collectors.partitioningBy(e -> e.getAge() > 25));
 		return emp;
 	}
 
+	//who is the oldest employee in the organization? what is his age and department he belongs to
 	public Optional<Employee> findOldestEmpAgeWise() {
 			Optional<Employee> emp = employeeList.stream().max(Comparator.comparingInt(Employee::getAge));
 		return emp;

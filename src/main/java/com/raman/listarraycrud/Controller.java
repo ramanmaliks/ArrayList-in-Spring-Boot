@@ -75,7 +75,7 @@ public class Controller {
 	public Map<String, Long> getDepEmpWise() {
 		return empSer.getDepEmpWise();
 	}
-	// average salary of each department
+	// What is the average salary of each department
 	@RequestMapping(value = "/emp/dept-avgsal", method = RequestMethod.GET)
 	public Map<String, Double> getDepAvgSal() {
 		return empSer.getDepAvgSal();
@@ -90,8 +90,7 @@ public class Controller {
 	public Optional<Employee> getOldestEmp() {
 		return empSer.getOldestEmp();
 	}
-	// How many male and female employees are there in the sales and marketing
-	// team
+	// How many male and female employees are there in the sales and marketing team
 	@RequestMapping(value = "/emp/salesandmarketing", method = RequestMethod.GET)
 	public Map<String, Long> getEmpInSalesAndMarketingGenderWise() {
 		return empSer.getEmpInSalesAndMarketingGenderWise();

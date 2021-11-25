@@ -355,127 +355,234 @@ public List getYoj(int yoj) {
 # Count the number of employees in each department ?
 ### in Employee Controller Class
 ```
-
+@RequestMapping(value = "/emp/dept-emp", method = RequestMethod.GET)
+	public Map<String, Long> getDepEmpWise() {
+		return empSer.getDepEmpWise();
+	}
 ```
 ### in Employee Service Class
 ```
-
+public Map<String, Long> getDepEmpWise() {
+		return empRepo.findEmpDep();
+	}
 ```
 ### in Employee Repository
 ```
-
+public Map<String, Long> findEmpDep() {
+		Map<String, Long> emp = employeeList.stream().collect(Collectors
+				.groupingBy(Employee::getDepartment, Collectors.counting()));
+		return emp;
+	}
 ```
 ------------------------------------------------------------
 # What is the average salary of each department
 ### in Employee Controller Class
 ```
-
+@RequestMapping(value = "/emp/dept-avgsal", method = RequestMethod.GET)
+	public Map<String, Double> getDepAvgSal() {
+		return empSer.getDepAvgSal();
+	}
 ```
 ### in Employee Service Class
 ```
-
+	public Map<String, Double> getDepAvgSal() {
+				return empRepo.findAvgDepWiseSalary();
+	}
 ```
 ### in Employee Repository
 ```
-
+public Map<String, Double> findAvgDepWiseSalary() {
+		Map<String, Double> emp = employeeList.stream()
+				.collect(Collectors.groupingBy(Employee::getDepartment,
+						Collectors.averagingDouble(Employee::getSalary)));
+		return emp;
+	}
 ```
 ------------------------------------------------------------
-# who has the most working experience in the organizarion
+# who has the most working experience in the organization
 ### in Employee Controller Class
 ```
-
+@RequestMapping(value = "/emp/oldest", method = RequestMethod.GET)
+	public Optional<Employee> getOldestEmp() {
+		return empSer.getOldestEmp();
+	}
 ```
 ### in Employee Service Class
 ```
-
+public Optional<Employee> getOldestEmp() {
+		return empRepo.FindOldestEmp();
+	}
 ```
 ### in Employee Repository
 ```
-
+public Optional<Employee> FindOldestEmp() {
+		Optional<Employee> emp = employeeList.stream()
+				.sorted(Comparator.comparingInt(Employee::getYearOfJoining))
+				.findFirst();
+		return emp;
+	}
+```
+------------------------------------------------------------
+# Get the details of youngest male employee in the product development department
+### in Employee Controller Class
+```
+@RequestMapping(value = "/emp/youngest", method = RequestMethod.GET)
+	public Optional<Employee> getYoungestEmp() {
+		return empSer.getYoungestEmp();
+```
+### in Employee Service Class
+```
+public Optional<Employee> getYoungestEmp() {
+		return empRepo.findYoungestEmpOfMinAgeDep();
+	}
+```
+### in Employee Repository
+```
+	public Optional<Employee> findYoungestEmpOfMinAgeDep() {
+		Optional<Employee> emp = employeeList.stream()
+				.filter(e -> e.getGender() == "Male"
+						&& e.getDepartment() == "Product Development")
+				.min(Comparator.comparingInt(Employee::getAge));
+		return emp;
+	}
 ```
 ------------------------------------------------------------
 # how many male and female employees are there in the sales and marketing team
 ### in Employee Controller Class
 ```
-
+@RequestMapping(value = "/emp/salesandmarketing", method = RequestMethod.GET)
+	public Map<String, Long> getEmpInSalesAndMarketingGenderWise() {
+		return empSer.getEmpInSalesAndMarketingGenderWise();
+	}
 ```
 ### in Employee Service Class
 ```
-
+public Map<String, Long> getEmpInSalesAndMarketingGenderWise() {
+		return empRepo.findEmpGenderInSalesNMarketing();
+	}
 ```
 ### in Employee Repository
 ```
-
+	public Map<String, Long> findEmpGenderInSalesNMarketing() {
+		Map<String, Long> emp = employeeList.stream()
+				.filter(e -> e.getDepartment() == "Sales And Marketing")
+				.collect(Collectors.groupingBy(Employee::getGender,
+						Collectors.counting()));
+		return emp;
+	}
 ```
 ------------------------------------------------------------
 # what is the average salary of male and female employees
 ### in Employee Controller Class
 ```
-
+@RequestMapping(value = "/emp/avgsalary", method = RequestMethod.GET)
+	public Map<String, Double> getEmpAvgSalary() {
+		return empSer.getEmpAvgSalary();
 ```
 ### in Employee Service Class
 ```
-
+public Map<String, Double> getEmpAvgSalary() {
+		return empRepo.findEmpAvgSalaryGenderWise();
+	}
 ```
 ### in Employee Repository
 ```
-
+public Map<String, Double> findEmpAvgSalaryGenderWise() {
+		Map<String, Double> emp = employeeList.stream()
+				.collect(Collectors.groupingBy(Employee::getGender,
+						Collectors.averagingDouble(Employee::getSalary)));
+		return emp;
+	}
 ```
 ------------------------------------------------------------
 # List down the names of all employees in each department 
 ### in Employee Controller Class
 ```
-
+@RequestMapping(value = "/emp/details", method = RequestMethod.GET)
+	public Map<String, List<Employee>> getEmpNamesDept() {
+		return empSer.getEmpNamesDept();
+	}
 ```
 ### in Employee Service Class
 ```
-
+public Map<String, List<Employee>> getEmpNamesDept() {
+		return empRepo.findNamesEmpDeptWise();
+	}
 ```
 ### in Employee Repository
 ```
-
+public Map<String, List<Employee>> findNamesEmpDeptWise() {
+		Map<String, List<Employee>> emp = employeeList.stream()
+				.collect(Collectors.groupingBy(Employee::getDepartment));
+		return emp;
+	}
 ```
 ------------------------------------------------------------
-# what is the average salay and total salary of the whole organization
+# what is the average salary and total salary of the whole organization
 ### in Employee Controller Class
 ```
-
+@RequestMapping(value = "/emp/orgavg", method = RequestMethod.GET)
+	public DoubleSummaryStatistics getTotalnAverageSal() {
+		return empSer.getTotalnAverageSal();
 ```
 ### in Employee Service Class
 ```
-
+public DoubleSummaryStatistics getTotalnAverageSal() {
+		return empRepo.findTotalSalaryAndAverageSalary();
+	}
 ```
 ### in Employee Repository
 ```
-
+public DoubleSummaryStatistics findTotalSalaryAndAverageSalary() {
+		DoubleSummaryStatistics emp = employeeList.stream()
+				.collect(Collectors.summarizingDouble(Employee::getSalary));
+		return emp;
+	}
 ```
 ------------------------------------------------------------
 # Separate the employees who are younger or equal to 25 years from thos employees who are older than 25 years
 ### in Employee Controller Class
 ```
-
+@RequestMapping(value = "/emp/part", method = RequestMethod.GET)
+	public Map<Boolean, List<Employee>> getPartitionByEmpAge() {
+		return empSer.getPartitionByEmpAge();
+	}
 ```
 ### in Employee Service Class
 ```
-
+public Map<Boolean, List<Employee>> getPartitionByEmpAge() {
+		return empRepo.findPartitionByAge();
+	}
 ```
 ### in Employee Repository
 ```
-
+public Map<Boolean, List<Employee>> findPartitionByAge() {
+		Map<Boolean, List<Employee>> emp = employeeList.stream()
+				.collect(Collectors.partitioningBy(e -> e.getAge() > 25));
+		return emp;
+	}
 ```
 ------------------------------------------------------------
 # who is the oldest employee in the organization? what is his age and department he belongs to
 ### in Employee Controller Class
 ```
-
+@RequestMapping(value = "/emp/oldemp", method = RequestMethod.GET)
+	public Optional<Employee> getOldestEmpAgeWise() {
+		return empSer.getOldestEmpAgeWise();
+	}
 ```
 ### in Employee Service Class
 ```
-
+	public Optional<Employee> getOldestEmpAgeWise() {
+		return empRepo.findOldestEmpAgeWise();
+	}
 ```
 ### in Employee Repository
 ```
-
+public Optional<Employee> findOldestEmpAgeWise() {
+			Optional<Employee> emp = employeeList.stream().max(Comparator.comparingInt(Employee::getAge));
+		return emp;
+	}
 ```
 
 
