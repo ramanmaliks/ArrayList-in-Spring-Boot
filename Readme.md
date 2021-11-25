@@ -129,21 +129,8 @@ public List<Employee> getAllEmp() {
 ```
 ### in Employee Repository
 ```
-	# Finding Maximum ID
-	private int getMaxId() {
-		Optional<Employee> highestidwrapper = employeeList.stream().collect(
-				Collectors.maxBy(Comparator.comparingInt(Employee::getId)));
-		Employee highestid = highestidwrapper.get();
-		return highestid.getId();
-	}
-	# Save Method
-	public Employee save(Employee employee) {
-		key = getMaxId() == 0 ? 0 : getMaxId();
-		if (employee.getId() == 0) {
-			employee.setId(++key);
-		}
-		employeeList.add(employee);
-		return employee;
+	public List<Employee> findAll() {
+		return employeeList;
 	}	
 ```
 

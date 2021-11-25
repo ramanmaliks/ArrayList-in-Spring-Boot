@@ -15,11 +15,11 @@ public class EmpRepository {
 	public List<Employee> employeeList = new ArrayList<Employee>();
 
 	int key = 0;
-
+	// VIEW ALL EMPLOYEE
 	public List<Employee> findAll() {
 		return employeeList;
 	}
-
+	// MAX ID
 	private int getMaxId() {
 
 		Optional<Employee> highestidwrapper = employeeList.stream().collect(
@@ -27,6 +27,7 @@ public class EmpRepository {
 		Employee highestid = highestidwrapper.get();
 		return highestid.getId();
 	}
+	// SAVE NEW EMPLOYEE
 	public Employee save(Employee employee) {
 		key = getMaxId() == 0 ? 0 : getMaxId();
 		if (employee.getId() == 0) {
@@ -35,7 +36,7 @@ public class EmpRepository {
 		employeeList.add(employee);
 		return employee;
 	}
-
+	// UPDATE EMPLOYEE
 	public Employee save(Integer id, Employee employee) {
 		Employee empl = employeeList.stream().filter(e -> e.getId() == id)
 				.findAny().get();
@@ -73,7 +74,7 @@ public class EmpRepository {
 				.distinct().toList();
 		return department;
 	}
-	// AVERAGE OF MALE AND FEMALE EMPLOYEES
+	// AVERAGE AGE OF MALE AND FEMALE EMPLOYEES
 	public Map<String, Double> findAvgGenderWise() {
 		Map<String, Double> empGender = employeeList.stream()
 				.collect(Collectors.groupingBy(Employee::getGender,
