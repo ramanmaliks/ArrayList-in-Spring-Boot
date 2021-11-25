@@ -104,21 +104,20 @@ public class EmpSerivce {
 	private EmpRepository empRepo;
 ```
 
-# VIEW ALL EMPLOYEES LIST http://127.0.0.0.1:8080/all
-## in Employee Controller Class
+# VIEW ALL EMPLOYEES LIST [(http://127.0.0.1:8080/all "View All Emplyees List")] 
+### in Employee Controller Class
 ``` 
 @RequestMapping(value = "/all", method = RequestMethod.GET)
 	public List<Employee> getAllEmp() {
 		return empSer.getAllEmp();
 	}
 ```
-## in Employee Service Class
+### in Employee Service Class
 ```
 public List<Employee> getAllEmp() {
 		return empRepo.findAll();	}
 ```
-## in Employee Repository
-###
+### in Employee Repository
 ```
 	# Finding Maximum ID
 	private int getMaxId() {
