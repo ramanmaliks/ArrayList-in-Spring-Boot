@@ -7,8 +7,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ListArrayCrudDemoApplication implements CommandLineRunner {
-	
+public class ListArrayCrudDemoApplication extends SpringBootServletInitializer implements CommandLineRunner {
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(ListArrayCrudDemoApplication.class);
+	}
 	@Autowired
 	private EmpRepository empRep;
 	
