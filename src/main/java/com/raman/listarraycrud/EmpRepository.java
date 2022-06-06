@@ -71,7 +71,7 @@ public class EmpRepository {
 	// VIEW ALL DEPARTMENT NAMES
 	public List findAllDepartment() {
 		List department = employeeList.stream().map(Employee::getDepartment)
-				.distinct().toList();
+				.distinct()..collect(Collectors.toList());
 		return department;
 	}
 	// AVERAGE AGE OF MALE AND FEMALE EMPLOYEES
@@ -90,7 +90,7 @@ public class EmpRepository {
 	//Get the name of all employees who have joined after 2015?
 	public List findByYoJ(int yoj) {
 		List emp = employeeList.stream().filter(e -> e.getYearOfJoining() > yoj)
-				.map(Employee::getName).toList();
+				.map(Employee::getName)..collect(Collectors.toList());
 		return emp;
 	}
 	
